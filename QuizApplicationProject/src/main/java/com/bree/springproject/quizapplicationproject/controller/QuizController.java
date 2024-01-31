@@ -1,13 +1,14 @@
 package com.bree.springproject.quizapplicationproject.controller;
 
+import com.bree.springproject.quizapplicationproject.model.Question;
+import com.bree.springproject.quizapplicationproject.model.QuizWrapper;
 import com.bree.springproject.quizapplicationproject.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("quiz")
@@ -20,4 +21,8 @@ public class QuizController {
     return quizService.createQuiz(category,numQ,title);
     }
 
+    @GetMapping("get/{id}")
+    public ResponseEntity<List<QuizWrapper>> getQuizQuestions(@PathVariable Long id ){
+        return quizService.getQuizQuestions(id);
+    }
 }
