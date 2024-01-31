@@ -22,13 +22,13 @@ public class QuestionController {
     }
 
     @GetMapping("category/{category}")
-    public List<Question> getQuestionsByCategory(@PathVariable String category){
+    public ResponseEntity<List<Question>>getQuestionsByCategory(@PathVariable String category){
         return questionService. getQuestionsByCategory(category);
     }
 
     @PostMapping("add")
-    public String addQuestion(Question question){
-       return questionService.addQuestion(question);
+    public ResponseEntity<String> addQuestion(@RequestBody Question question){
+       return new ResponseEntity<>(questionService.addQuestion(question).getStatusCode());
     }
 
 }
